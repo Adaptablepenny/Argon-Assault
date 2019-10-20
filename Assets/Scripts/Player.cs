@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField] float positionPitchFactor = -5f;
     [SerializeField] float controlPitchFactor = -5f;
 
+    [SerializeField] float yRange;
+    [SerializeField] float xRange;
     float xThrow = 0f;
     float yThrow = 0f;
     [SerializeField] float positionYawFactor;
@@ -62,7 +64,7 @@ public class Player : MonoBehaviour
 
         float rawXPos = transform.localPosition.x + xOffset;
 
-        float xRange = 35f;
+        xRange = 35f;
 
         float clampedXPos = Mathf.Clamp(rawXPos, -xRange, xRange);
         return clampedXPos;
@@ -76,7 +78,7 @@ public class Player : MonoBehaviour
 
         float rawYPos = transform.localPosition.y + yOffset;
 
-        float yRange = 22f;
+        yRange = 22f;
 
         float clampedYPos = Mathf.Clamp(rawYPos, -yRange, yRange);
         return clampedYPos;
