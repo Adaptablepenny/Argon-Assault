@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     
     [SerializeField] GameObject deathFX;
     [SerializeField] Transform parent;
-    [SerializeField] int scorePerHit = 12;
+    int scorePerHit = 12;
 
     ScoreBoard scoreBoard;
 
@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         AddMeshCollider();
-        scoreBoard = FindObjectOfType<ScoreBoard>();
+        scoreBoard = FindObjectOfType<ScoreBoard>();//Finds an object of Type ScoreBoard
 
     }
 
