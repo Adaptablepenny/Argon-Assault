@@ -1,35 +1,42 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 
 {
-    [SerializeField] float xSpeed = 60f;
+    
+    [Header("General")]
+    [SerializeField] float ControlSpeed = 60f;
     [SerializeField] float ySpeed = 60f;
+    [SerializeField] float yRange = 35f;
+    [SerializeField] float xRange = 24f;
 
+
+    [Header("Screen-position based")]
     [SerializeField] float positionPitchFactor = -5f;
     [SerializeField] float controlPitchFactor = -5f;
 
-    [SerializeField] float yRange;
-    [SerializeField] float xRange;
+
     float xThrow = 0f;
     float yThrow = 0f;
+    [Header("Control-throw based")]
     [SerializeField] float positionYawFactor;
     [SerializeField] float controlRollFactor;
+    [SerializeField] bool isControlEnabled = true;
 
+   
     void Start()
     {
-        
+
     }
     void Update()
     {
-        ProcessTranslation();
-        ProcessRotation();
-        
-
+        if (isControlEnabled)
+        {
+            ProcessTranslation();
+            ProcessRotation();
+        }
     }
 
 
@@ -52,7 +59,7 @@ public class Player : MonoBehaviour
 
     void ProcessTranslation()
     {
-       transform.localPosition = new Vector3(ProcessedXInput(), ProcessedYInput(), transform.localPosition.z);
+        transform.localPosition = new Vector3(ProcessedXInput(), ProcessedYInput(), transform.localPosition.z);
     }
 
 
@@ -60,13 +67,12 @@ public class Player : MonoBehaviour
     {
         xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
 
-        float xOffset = xThrow * xSpeed * Time.deltaTime;
+        float xOffset = xThrow * ControlSpeed * Time.deltaTime;
 
         float rawXPos = transform.localPosition.x + xOffset;
 
-        xRange = 35f;
-
         float clampedXPos = Mathf.Clamp(rawXPos, -xRange, xRange);
+
         return clampedXPos;
     }
 
@@ -78,26 +84,25 @@ public class Player : MonoBehaviour
 
         float rawYPos = transform.localPosition.y + yOffset;
 
-        yRange = 22f;
-
         float clampedYPos = Mathf.Clamp(rawYPos, -yRange, yRange);
+
         return clampedYPos;
     }
 
-  
-
-    /*void OnCollisionEnter(Collision col)
+    void OnPlayerDeath()
     {
-        switch (col.gameObject.tag)
-        {
-            case "Terrain":
-                Reload();
-                break;
-            default:
-                break;
-        }
-        
-    }*/
+        isControlEnabled = false;
+    }
+
+
+
+    void OnCollisionEnter(Collision col)
+    {
+        print("Player Collided With Something");
+
+    }
+
+
 
 
 
