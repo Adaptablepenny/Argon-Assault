@@ -10,19 +10,20 @@ public class CollisionHandler : MonoBehaviour
     
     void OnTriggerEnter(Collider ship)
     {
-        StartDeathSequence();
-        deathFX.SetActive(true);
+        StartDeathSequence();//Function to start a death sequence
+        deathFX.SetActive(true);//Enables the GameObject attached to the script to give an explos VFX and SFX (plays on awake)
+        //todo possibly make the explosion gameObject instatiate instead.
     }
 
-    void LoadLevel()
+    void LoadLevel()// Reloads the level
     {
         int currScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currScene);
     }
-    private void StartDeathSequence()
+    private void StartDeathSequence()//Calls the OnPlayerDeath function from the player controller
     {
         SendMessage("OnPlayerDeath");
-        Invoke("LoadLevel", levelLoadDelay);
+        Invoke("LoadLevel", levelLoadDelay);//Calls the LoadLevel function after the set levelLoadDelay (2 seconds)
         
         
     }
