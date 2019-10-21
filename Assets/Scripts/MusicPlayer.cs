@@ -1,20 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class MusicPlayer : MonoBehaviour
 {
-
+    
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+       int numMusicPlayers = FindObjectsOfType<MusicPlayer>().Length;
+
+        if(numMusicPlayers > 1)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+        
     }
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("LoadScene", 5f);
+        
     }
 
     // Update is called once per frame
@@ -25,8 +35,5 @@ public class MusicPlayer : MonoBehaviour
 
 
 
-    void LoadScene()
-    {
-        SceneManager.LoadScene(1);
-    }
+   
 }
