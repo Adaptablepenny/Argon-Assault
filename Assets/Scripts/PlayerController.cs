@@ -32,16 +32,16 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        if (isControlEnabled)
+        if (isControlEnabled)//Checks to see if the ship has collided with anything (AKA Died)
         {
-            ProcessTranslation();
-            ProcessRotation();
+            ProcessTranslation();//allows the ship to fly up down left and right
+            ProcessRotation();//rotates the ship as necessary
         }
     }
 
 
 
-    void ProcessRotation()
+    void ProcessRotation()//This whole function calculates the rotation required depending on the position of ship on screen
     {
 
         float pitchDueToPosition = transform.localPosition.y * positionPitchFactor;
@@ -57,13 +57,13 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void ProcessTranslation()
+    void ProcessTranslation()//This function just moves the ship based on the calculations of the other functions
     {
         transform.localPosition = new Vector3(ProcessedXInput(), ProcessedYInput(), transform.localPosition.z);
     }
 
 
-    float ProcessedXInput()
+    float ProcessedXInput()//Process how fast and how far the ship will go on the X Axis
     {
         xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
 
@@ -71,12 +71,12 @@ public class PlayerController : MonoBehaviour
 
         float rawXPos = transform.localPosition.x + xOffset;
 
-        float clampedXPos = Mathf.Clamp(rawXPos, -xRange, xRange);
+        float clampedXPos = Mathf.Clamp(rawXPos, -xRange, xRange);//Keeps the ship from going off screen
 
         return clampedXPos;
     }
 
-    float ProcessedYInput()
+    float ProcessedYInput()//Process how fast and how far the ship will go on the Y Axis
     {
         yThrow = CrossPlatformInputManager.GetAxis("Vertical");
 
@@ -84,19 +84,19 @@ public class PlayerController : MonoBehaviour
 
         float rawYPos = transform.localPosition.y + yOffset;
 
-        float clampedYPos = Mathf.Clamp(rawYPos, -yRange, yRange);
+        float clampedYPos = Mathf.Clamp(rawYPos, -yRange, yRange);//Keeps the ship from going off screen
 
         return clampedYPos;
     }
 
-    void OnPlayerDeath()
+    void OnPlayerDeath()//Small function for the collider script to call, when the ship collides it disables the controls
     {
         isControlEnabled = false;
     }
 
 
 
-    void OnCollisionEnter(Collision col)
+    void OnCollisionEnter(Collision col) //This does nothing but debug for collisions
     {
         print("Player Collided With Something");
 
@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-    void Reload()
+    void Reload()//Reloads the scene AKA Level
     {
         SceneManager.LoadScene(1);
     }

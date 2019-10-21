@@ -10,8 +10,8 @@ public class Enemy : MonoBehaviour
     Collider col;
     void Start()
     {
-        gameObject.AddComponent<MeshCollider>().convex = true;
-        col.isTrigger.Equals(false);
+        gameObject.AddComponent<MeshCollider>().convex = true; //Adds a MeshCollider component to the enemy ship and makes it convex
+        col.isTrigger.Equals(false);// Sets the colliders trigger to false
         
     }
 
@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
 
     private void OnParticleCollision(GameObject enemy)
     {
-        Instantiate(deathFX,transform.position, Quaternion.identity);
+        Instantiate(deathFX,transform.position, Quaternion.identity);// Creates a Enemy Death FX prefab into the world
         Destroy(gameObject);
     }    
 }
