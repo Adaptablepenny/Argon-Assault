@@ -7,7 +7,8 @@ public class Enemy : MonoBehaviour
     
     [SerializeField] GameObject deathFX;
     [SerializeField] Transform parent;
-    int scorePerHit = 12;
+    int scorePerKill = 12;
+    [SerializeField] int hitPoints = 10;
 
     ScoreBoard scoreBoard;
 
@@ -36,11 +37,18 @@ public class Enemy : MonoBehaviour
 
     private void OnParticleCollision(GameObject enemy)
     {
-        scoreBoard.AddScore(scorePerHit);
-        GameObject fx = Instantiate(deathFX,transform.position, Quaternion.identity);// Creates a Enemy Death FX prefab into the world
+        hitPoints--;
+        if (hitPoints <= 0)
+        {
+            EnemyDeath();
+        }
+    } 
+    
+    void EnemyDeath()
+    {
+        scoreBoard.AddScore(scorePerKill);
+        GameObject fx = Instantiate(deathFX, transform.position, Quaternion.identity);// Creates a Enemy Death FX prefab into the world
         fx.transform.parent = parent;
         Destroy(gameObject);
-        
-
-    }    
+    }
 }

@@ -5,12 +5,12 @@ using UnityStandardAssets.CrossPlatformInput;
 public class PlayerController : MonoBehaviour
 
 {
-    
     [Header("General")]
     [SerializeField] float ControlSpeed = 60f;
     [SerializeField] float ySpeed = 60f;
     [SerializeField] float yRange = 35f;
     [SerializeField] float xRange = 24f;
+    [SerializeField] GameObject[] guns;
 
 
     [Header("Screen-position based")]
@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
         {
             ProcessTranslation();//allows the ship to fly up down left and right
             ProcessRotation();//rotates the ship as necessary
+            ProcessFiring();//Shoot guns
         }
     }
 
@@ -89,22 +90,44 @@ public class PlayerController : MonoBehaviour
         return clampedYPos;
     }
 
+    void ProcessFiring()//Turns the guns on and off by activating and deactiving the gameobject
+    {
+        if (CrossPlatformInputManager.GetButton("Fire"))
+        {
+            ActivateGuns();
+        }
+        else
+        {
+            DeactivateGuns();
+        }
+    }
+
+    private void ActivateGuns()// Turn on the gun object
+        {
+            foreach (GameObject gun in guns)
+            {
+                gun.SetActive(true);
+            }
+        }
+
+    private void DeactivateGuns()// Turn off the gun object
+    {
+        foreach (GameObject gun in guns)
+        {
+            gun.SetActive(false);
+        }
+    }    
+
     void OnPlayerDeath()//Small function for the collider script to call, when the ship collides it disables the controls
     {
         isControlEnabled = false;
     }
-
-
 
     void OnCollisionEnter(Collision col) //This does nothing but debug for collisions
     {
         print("Player Collided With Something");
 
     }
-
-
-
-
 
     void Reload()//Reloads the scene AKA Level
     {
