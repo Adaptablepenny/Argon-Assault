@@ -8,7 +8,7 @@ public class SceneLoader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("LoadScene", 5f);
+        Invoke("LoadScene", 3f);
     }
         
     
