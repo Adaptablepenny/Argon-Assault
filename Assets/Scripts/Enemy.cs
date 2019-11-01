@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     
     [SerializeField] GameObject deathFX;
     [SerializeField] Transform parent;
-    int scorePerKill = 12;
+    int scorePerKill = 1;
     [SerializeField] int hitPoints = 10;
 
     ScoreBoard scoreBoard;
