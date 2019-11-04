@@ -153,10 +153,10 @@ RectTransform:
   m_Father: {fileID: 493431419}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.40839583, y: 0.12275949}
-  m_AnchoredPosition: {x: 122.100006, y: -8.646}
-  m_SizeDelta: {x: -283, y: -17.293}
+  m_AnchorMin: {x: 0.13000001, y: 0}
+  m_AnchorMax: {x: 0.395, y: 0.141}
+  m_AnchoredPosition: {x: -2.8300018, y: -2.9580803}
+  m_SizeDelta: {x: -11.859985, y: -5.9161987}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &181870065
 MonoBehaviour:
@@ -182,14 +182,14 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
-    m_MaxSize: 120
+    m_MaxSize: 123
     m_Alignment: 6
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 123456
+  m_Text: 12345678
 --- !u!222 &181870066
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1505,10 +1505,10 @@ RectTransform:
   m_Father: {fileID: 493431419}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -833.5, y: -575.8}
-  m_SizeDelta: {x: 253.1, y: 141.4}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.13847917, y: 0.141}
+  m_AnchoredPosition: {x: -5.450012, y: -3.0300293}
+  m_SizeDelta: {x: -12.900024, y: -5.600006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1191674237
 MonoBehaviour:
@@ -1929,6 +1929,8 @@ PlayableDirector:
   - key: {fileID: -2658245058363988369, guid: 4aa255e99ccbba8488ed736eb6544f24, type: 2}
     value: {fileID: 8832179475010148623}
   - key: {fileID: -2422221135770421499, guid: 4aa255e99ccbba8488ed736eb6544f24, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -2493906846606455121, guid: 4aa255e99ccbba8488ed736eb6544f24, type: 2}
     value: {fileID: 0}
   m_ExposedReferences:
     m_References:
@@ -2551,7 +2553,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.002
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8832179475010148623, guid: 4f85edcb72e20954ea595c4b4095b7d5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865889258741503853, guid: 4f85edcb72e20954ea595c4b4095b7d5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8832179474996609116, guid: 4f85edcb72e20954ea595c4b4095b7d5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1130379388, guid: 4f85edcb72e20954ea595c4b4095b7d5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4f85edcb72e20954ea595c4b4095b7d5, type: 3}
 --- !u!95 &8832179475010148623 stripped
 Animator:

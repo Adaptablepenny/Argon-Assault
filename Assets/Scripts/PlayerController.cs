@@ -94,29 +94,25 @@ public class PlayerController : MonoBehaviour
     {
         if (CrossPlatformInputManager.GetButton("Fire"))
         {
-            ActivateGuns();
+            SetGunsActive(true);
         }
         else
         {
-            DeactivateGuns();
+            SetGunsActive(false);
         }
     }
 
-    private void ActivateGuns()// Turn on the gun object
-        {
-            foreach (GameObject gun in guns)
-            {
-                gun.SetActive(true);
-            }
-        }
-
-    private void DeactivateGuns()// Turn off the gun object
+    private void SetGunsActive(bool isActive)// Turn on the gun object
     {
+        
         foreach (GameObject gun in guns)
         {
-            gun.SetActive(false);
-        }
-    }    
+            var emissionModule = gun.GetComponent<ParticleSystem>().emission;
+            emissionModule.enabled = isActive;
+
+        }            
+    }
+ 
 
     void OnPlayerDeath()//Small function for the collider script to call, when the ship collides it disables the controls
     {
